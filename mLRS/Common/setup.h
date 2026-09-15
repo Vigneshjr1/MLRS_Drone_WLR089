@@ -1000,6 +1000,9 @@ void setup_configure_config(uint8_t config_id)
         Config.connect_listen_hop_cnt = (uint8_t)(1.5f * Config.Fhss2.Num);
     }
     if (Config.connect_sync_cnt_max < CONNECT_SYNC_CNT) Config.connect_sync_cnt_max = CONNECT_SYNC_CNT;
+#ifdef SAMR34
+    Config.connect_sync_cnt_max = 15; // allow more frames for setup data exchange over intermittent link
+#endif
 
     Config.LQAveragingPeriod = (LQ_AVERAGING_MS/Config.frame_rate_ms);
 

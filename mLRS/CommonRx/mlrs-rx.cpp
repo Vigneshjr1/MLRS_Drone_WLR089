@@ -53,6 +53,27 @@
 #include "../Common/hal/esp-powerup.h"
 #include "../Common/hal/esp-rxclock.h"
 
+#elif defined SAMR34
+
+#include "../Common/hal/samr34-glue.h"
+#include "../modules/stm32ll-lib/src/stdstm32.h"
+#include "../modules/samr34-lib/src/samr34-peripherals.h"
+#include "../modules/samr34-lib/src/samr34-mcu.h"
+#include "../modules/samr34-lib/src/samr34-stack.h"
+#include "../Common/hal/hal.h"
+#include "../modules/samr34-lib/src/samr34-delay.h" // these are dependent on hal
+#include "../modules/samr34-lib/src/samr34-eeprom.h"
+#include "../modules/samr34-lib/src/samr34-spi.h"
+#ifdef USE_SERIAL
+#include "../modules/samr34-lib/src/samr34-uartb.h"
+#endif
+#ifdef USE_DEBUG
+#include "../modules/samr34-lib/src/samr34-uartf.h"
+#endif
+#include "../Common/hal/samr34-timer.h"
+#include "../Common/hal/samr34-powerup.h"
+#include "../Common/hal/samr34-rxclock.h"
+
 #else
 
 #include "../Common/hal/glue.h"

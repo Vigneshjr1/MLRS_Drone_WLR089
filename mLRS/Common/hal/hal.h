@@ -101,6 +101,9 @@ Note: Some "high-level" features are set for each device in the device_conf.h fi
 #if !(defined ESP8266 || defined ESP32)
 extern "C" { void delay_us(uint32_t us); }
 extern "C" { void delay_ms(uint16_t ms); }
+#ifdef SAMR34
+extern "C" { void delay_ns(uint32_t ns); }
+#endif
 #endif
 
 
@@ -250,6 +253,18 @@ extern "C" { void delay_ms(uint16_t ms); }
 
 #if defined TX_DIY_NICERF_LR2021_G431KB
 #include "stm32/tx-hal-diy-NiceRF-LR2021-g431kb.h"
+#endif
+
+
+//-------------------------------------------------------
+// SAMR34/WLR089U0 Boards
+//-------------------------------------------------------
+
+#ifdef RX_WLR089U0_XPRO
+#include "samr34/rx-hal-wlr089u0-xpro.h"
+#endif
+#ifdef TX_WLR089U0_XPRO
+#include "samr34/tx-hal-wlr089u0-xpro.h"
 #endif
 
 

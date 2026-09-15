@@ -51,13 +51,21 @@
 #define SETUP_TX_SERIAL_PORT            0 // 0: serial port, 1: wbridge (BT/ESP) port, 2: serial2, 3: com, 4: mBridge
 #define SETUP_TX_SERIAL_PORT2           0 // 0: none, 1: serial port, 2: wbridge (BT/ESP) port, 3: serial2
 
+#ifdef SAMR34
+#define SETUP_TX_CHANNELS_SOURCE        0 // no RC input, pure MAVLink telemetry bridge
+#else
 #define SETUP_TX_CHANNELS_SOURCE        1 // 0: none, 1: Crsf (pin5), 2: In (In or pin1), 3: mBridge (pin5)
+#endif
 
 #define SETUP_TX_CHANNEL_ORDER          CHANNEL_ORDER_AETR
 
 #define SETUP_TX_IN_MODE                0 // 0: IN_CONFIG_SBUS, 1: IN_CONFIG_SBUS_INVERTED
 
+#ifdef SAMR34
+#define SETUP_TX_SERIAL_BAUDRATE        0 // 57600 to match PX4 TELEM default
+#else
 #define SETUP_TX_SERIAL_BAUDRATE        1 // 0: 57600, 1: 115200, 2: 230400
+#endif
 
 #define SETUP_TX_POWER                  CPOWER
 
@@ -86,7 +94,11 @@
 #define SETUP_RX_SERIAL_LINK_MODE       2 // 0: transparent, 1: mavlink, 2: mavlinkX, 3: mspX
 
 #define SETUP_RX_MAVLINK_SYSTEM_ID      0 // 0: 51, 1: 52, 2: 53, 3: 54, 4: 55  // SiK uses 51, 68
+#ifdef SAMR34
+#define SETUP_RX_SEND_RADIO_STATUS      2 // px4 radio status format
+#else
 #define SETUP_RX_SEND_RADIO_STATUS      1 // 0: off, 1: ardu_1, 2: px4 aka "brad"
+#endif
 #define SETUP_RX_SEND_RC_CHANNELS       0 // 0: off, 1: RC_CHANNEL_OVERRIDE, 2: RC_CHANNELS
 
 #define SETUP_RX_OUT_RSSI_CHANNEL       0 // 0: off, 5: CH5, 16: CH16

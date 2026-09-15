@@ -425,6 +425,10 @@ class Sx127xDriver : public Sx127xDriverCommon
         delay_ms(300);
         _reset(); // this is super crucial ! was so for SX1280, is it also for the SX1276 ??
 
+#ifdef SAMR34
+        sx_post_reset_init();
+#endif
+
         // this is not nice, figure out where to place
 #if defined DEVICE_HAS_I2C_DAC || defined DEVICE_HAS_INTERNAL_DAC_TWOCHANNELS
         dac.Init();
@@ -449,6 +453,9 @@ class Sx127xDriver : public Sx127xDriverCommon
 //XX        delay_us(1000); // is this needed ????
 
         Configure(global_config);
+#ifdef SAMR34
+        sx_post_reset_init(); // re-apply TCXO setting after LoRa mode is active
+#endif
         delay_us(125); // may not be needed
         sx_dio_enable_exti_isr();
     }

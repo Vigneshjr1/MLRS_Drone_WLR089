@@ -372,6 +372,27 @@ The default selection of frequency bands can be overruled by feature defines.
 
 
 //-------------------------------------------------------
+// SAMR34/WLR089U0 Boards
+//-------------------------------------------------------
+
+#ifdef RX_WLR089U0_XPRO
+  #define DEVICE_NAME "WLR089U0 Xpro RX"
+  #define DEVICE_IS_RECEIVER
+  #define DEVICE_HAS_SX127x
+  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_915_MHZ_FCC
+#endif
+
+#ifdef TX_WLR089U0_XPRO
+  #define DEVICE_NAME "WLR089U0 Xpro TX"
+  #define DEVICE_IS_TRANSMITTER
+  #define DEVICE_HAS_SX127x
+  #define FREQUENCY_BAND_868_MHZ
+  #define FREQUENCY_BAND_915_MHZ_FCC
+#endif
+
+
+//-------------------------------------------------------
 // ESP Boards
 //-------------------------------------------------------
 
